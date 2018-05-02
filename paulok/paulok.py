@@ -15,9 +15,7 @@ bien cordialement, la direction
 
 """
 
-import tweepy, json, random
-from urllib.request import urlopen
-from urllib.error import URLError
+import tweepy, random
 
 consumer_token, consumer_secret = "", ""
 access_key, access_secret = "", ""
