@@ -6,4 +6,4 @@ Paulok c 1 skript de merd qu'i post llé mèsage de polok dan 1 terre-minal qhan
 
 BPMfetch.py est un script qui va fouiller dans les métadonnées de vos musiques pour récupérer le BPM puis trier du plus bas au plus haut.
 
-BaldiDontSlapMe is a script written in python using the amazing python-mss, pytesseract and Tesseract-OCR (https://digi.bib.uni-mannheim.de/tesseract/tesseract-ocr-setup-3.05.02-20180621.exe), it auto solve the math in Baldi's Basics in Education and Learning, as of now i only configurated the script to work with a 1920x1080 (aka 1080p) screen.
+sa_cheat_generator.py is a python script that is brute forcing hash to get GTA: San Andreas cheat code with user added strings (this video inspired me: https://www.youtube.com/watch?v=W_eFZ4HzU7Q)
