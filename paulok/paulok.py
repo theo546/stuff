@@ -7,7 +7,7 @@ sinon pour installer les putain de libraries c'est sudo pip install tweepy
 
 et pour faire en sorte que le putain de script se lance au démarrage d'un terminal faut
 éditer le putain de fichier .bashrc au root du dossier home de l'user courant
-et mettre "python3.6 /lien/vers/paulok.py"
+et mettre "python3 /lien/vers/paulok.py"
 
 pis faut créer une app sur https://apps.twitter.com/app lol
 
