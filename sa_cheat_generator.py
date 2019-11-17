@@ -7,8 +7,8 @@ cheat_list = [0xDE4B237D, 0xB22A28D1, 0x5A783FAE, 0xEECCEA2B, 0x42AF1E28, 0x555F
 
 import binascii, string
 max_char = 29 # max should be 29
-cheat_string = 'NATHAN'[::-1]
-insert_string_before = False
+cheat_string = 'HESOYA'[::-1]
+insert_string_before = True
 alphabet = list(string.ascii_uppercase)
 count_alphabet = len(alphabet)
 
