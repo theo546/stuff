@@ -1,3 +1,4 @@
+# Cheat list
 cheat_list = [0xDE4B237D, 0xB22A28D1, 0x5A783FAE, 0xEECCEA2B, 0x42AF1E28, 0x555FC201, 0x2A845345, 0xE1EF01EA, 0x771B83FC, 0x5BF12848, 0x44453A17, 0xFCFF1D08, 0xB69E8532, 0x8B828076, 0xDD6ED9E9, 0xA290FD8C, 
 0x3484B5A7, 0x43DB914E, 0xDBC0DD65, 0xD08A30FE, 0x37BF1B4E, 0xB5D40866, 0xE63B0D99, 0x675B8945, 0x4987D5EE, 0x2E8F84E8, 0x1A9AA3D6, 0xE842F3BC, 0x0D5C6A4E, 0x74D4FCB1, 0xB01D13B8, 0x66516EBC,
 0x4B137E45, 0x78520E33, 0x3A577325, 0xD4966D59, 0x5FD1B49D, 0xA7613F99, 0x1792D871, 0xCBC579DF, 0x4FEDCCFF, 0x44B34866, 0x2EF877DB, 0x2781E797, 0x2BC1A045, 0xB2AFE368, 0xFA8DD45B, 0x8DED75BD, 0x1A5526BC,
@@ -6,9 +7,9 @@ cheat_list = [0xDE4B237D, 0xB22A28D1, 0x5A783FAE, 0xEECCEA2B, 0x42AF1E28, 0x555F
 0xE49C3ED4, 0x171BA8CC, 0x86988DAE, 0x2BDD2FA1]
 
 import binascii, string
-max_char = 29 # max should be 29
-cheat_string = 'HESOYA'[::-1]
-insert_string_before = True
+max_char = 12 # max should be 29
+cheat_string = 'BENSUPERPC'[::-1] # The beginning / the end of the desired custom cheat (gonna be reversed)
+insert_string_before = False
 alphabet = list(string.ascii_uppercase)
 count_alphabet = len(alphabet)
 
@@ -18,40 +19,51 @@ while True:
 	if now > max_char:
 		break
 	if now == 1:
+		# Add an entry that contain '0' in the array list "list_characters" if it's the first character
 		list_characters.append(0)
 	else: 
+		# Otherwise, add a '-1' entry for the next ones
 		list_characters.append(-1)
 	now += 1
+# the array should be like this with "max_char" set on 12: [0, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1]
 
 final_list = []
-
 while True:
 	str = cheat_string
-	char = 0
+	current_list_char = 0
 	while True:
-		if char == max_char:
+		# Once the current_list_char value has reached the 
+		if current_list_char == max_char:
 			break
-		if list_characters[char] == count_alphabet:
-			list_characters[char] = 0
+		# If the current character has reached the top of the alphabet, reset the current char int to zero
+		if list_characters[current_list_char] == count_alphabet:
+			list_characters[current_list_char] = 0
 			try:
-				if list_characters[char+1] == -1:
-					list_characters[char+1] = 0
-				else:
-					list_characters[char+1] += 1
+				# then increase the next array entry by one
+				list_characters[current_list_char+1] += 1
 			except:
+				# If an error is detected (like the out of bound error), return the final list then exit
 				print(final_list)
 				quit()
-		if list_characters[char] == -1:
+		# If the current char value is set to '-1', break
+		if list_characters[current_list_char] == -1:
 			break
 		if insert_string_before == True:
-			str = alphabet[list_characters[char]] + str
+			# If the "insert_string_before" value is set to True, put the "cheat_string" value at the end of the current alphabet character (because GTA SA cheats check is reversed!).
+			str = alphabet[list_characters[current_list_char]] + str
 		else:
-			str = str + alphabet[list_characters[char]]
-		if char == 0:
+			# Otherwise, do the same as above, reversed.
+			str = str + alphabet[list_characters[current_list_char]]
+		# If the current char is set on '0', increase the '0' entry in the "list_characters" by one.
+		if current_list_char == 0:
 			list_characters[0] += 1
-		char += 1
+		# Increase the current char by one.
+		current_list_char += 1
+	
+	# bitwise left shift by 32 the crc32 hash
 	crcjam = ~binascii.crc32(str.encode('utf8')) % (1<<32)
 	
+	# Check if the crcjam hash exist in the "cheat_list" array, then append the cheat combination to the "final_list" array, then print it
 	if crcjam in cheat_list:
 		final_list.append(str[::-1])
 		print(str[::-1])
